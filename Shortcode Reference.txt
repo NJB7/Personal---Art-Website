@@ -1,0 +1,587 @@
+SHORTCODE REFERENCE: Projects wiki, journal, work, pins and blog posts
+nicolebergenart.com
+
+Which snippet holds what
+  Create Project Post Type Function   sections for Project pages, [[wiki links]]
+  Archive Post Types                  tag/category pages show every content type
+  Tag Cloud                           footer tag cloud covers every content type
+  Create Project UI                   [add_project] quick-entry form
+  Project Index & Tree                tiles, groups, tree of Projects
+  Project Table                       sortable table of Projects
+  Project Link Errors                 the Link Errors / housekeeping report
+  Project Journal                     Journal, status, gallery, post lists
+  Project Status in Quick Edit        Status column + Quick Edit dropdown
+  Create Journal UI                   [add_journal] quick-entry form
+  Convert to Journal                  one-time tool, then switch off
+  Work                                Work + Series post types, galleries
+  Create Work UI                      [add_work] quick-entry form
+  Create Pin UI / Pins                [add_pin] and the Pins post type
+  Unattached Journal Entries          admin page: give loose Journal entries a Project
+  Media Categories                    media library categories, filters, auto-sorting
+  Book Cover Category                 files Book covers into "Book covers" automatically
+  Remove Spacers                      admin tool: clean out spacer blocks (use, then off)
+
+Attributes are optional unless stated. Put a value in quotes: [project_index parent="current"]
+Drafts and private entries are only shown to you when you are signed in.
+
+
+======================================================================
+1. SECTIONS ON A PROJECT PAGE
+   Place these in the Site Editor, in the "Single item: Project" template,
+   as Shortcode blocks (outside the Post Content block).
+   Snippet: Create Project Post Type Function
+======================================================================
+
+[project_breadcrumbs]
+  The trail back up the tree, e.g. Projects > Cyanotype > Toning.
+  Shows only on child entries. "Projects" is plain text, not a link.
+
+[project_children]
+  Heading "In this section": the child entries of this page.
+  Shows only on parents that have children.
+
+[project_related]
+  Heading "Related": the entries linked in the Related box.
+  Links are two-way, so linking A to B also shows A on B.
+
+[project_backlinks]
+  Heading "Linked from": every Project or blog post that links to this
+  page with [[This Page's Title]] in its text.
+
+[project_links]
+  Heading "External Links": web links added in the External Links box.
+  Links that embed as videos are left out here (see below).
+
+[project_videos]
+  Heading "Videos": YouTube and Vimeo links from the External Links box,
+  shown as embedded players.
+
+[project_same_tags]
+  Heading "Shares tags with": other Projects that share a tag.
+  Leaves out this page itself, its parents (ancestors) and its direct children.
+
+
+======================================================================
+2. [[WIKI LINKS]] IN TEXT
+   Snippet: Create Project Post Type Function
+======================================================================
+
+[[Page Title]]   (typed in the text of a Project or a blog post)
+  Becomes a link to the Project with that exact title.
+  If no Project has that title yet, it shows as plain text and is listed on
+  the Link Errors page. The title match ignores capital letters.
+
+
+======================================================================
+3. ADDING NEW ENTRIES
+   Snippet: Create Project UI
+======================================================================
+
+[add_project]
+  The quick-entry form for Projects. Put it on its own page (yours is
+  /add-project/). Nothing is required: if the title, content or an image is
+  left blank or fails, the Project is still saved and the message lists what
+  was left blank, with an Edit link. A Project with no title is saved as a
+  draft. Fields: Title, Content, Parent project, Status, Categories (tree),
+  Tags, Related projects, External links (one per line; bad lines are skipped
+  and listed), Featured image (upload or Media Library).
+  Buttons: Save Draft or Publish Project.
+  Note: entries made with the form skip the block template, so the
+  template's sections are what show the extras on the finished page.
+
+[add_journal]
+  The quick-entry form for Journal entries (snippet: Create Journal UI).
+  Required: Title and Content. Optional: Projects (pick as many as apply),
+  categories, tags, featured image (upload or Media Library).
+  Link to  /your-add-journal-page/?project=123  (123 = a Project's ID) to
+  open the form with that Project already ticked.
+
+[add_work]
+  The quick-entry form for Work (snippet: Create Work UI). Put it on its own
+  page, e.g. /add-work/. Nothing is required. Fields: Title, Content (an
+  essay or a description), Year, Materials / size, Made in Project, Series
+  (tick existing ones or type a new name), Categories, Tags, Featured image
+  (upload or Media Library). Anything blank or failed is saved as blank and
+  listed so you can finish it in the editor. A Work with no title is always
+  saved as a draft.
+
+[add_pin]
+  The quick-entry form for Pins (snippet: Create Pin UI). Paste a web address
+  and press Fetch Page to pull the title, description and image, then review
+  and save. If the page cannot be read, the review form opens blank for you
+  to fill in. "Skip fetching and enter details myself" opens it blank
+  directly. Nothing is required; a Pin with no title is saved as a draft.
+  Refreshing the page after saving never makes a duplicate.
+
+
+======================================================================
+4. TILES, GROUPS AND TREES OF PROJECTS
+   Snippet: Project Index & Tree
+======================================================================
+
+[project_index]
+  Clickable tiles: the featured image (logo) with the title underneath.
+  parent      "0" = top level only (default), "current" = children of the
+              page it sits on, a Project ID, a slug such as
+              "cyanotype/toning", or "all" for every level.
+              (Becomes "all" if you use tag, category or ids.)
+  tag         one or more tag slugs, comma separated
+  category    one or more category slugs, comma separated
+  ids         hand-pick projects by ID, comma separated
+  orderby     "menu_order title" (default), title, date, modified, rand
+  order       ASC (default) or DESC
+  limit       maximum number of tiles
+  show_title  yes (default) or no
+  size        minimum tile width in pixels (default 160)
+  image_size  WordPress image size (default medium)
+  none        text shown when nothing matches
+  A Project with no featured image shows as a box with just its title (a little
+  larger, centred). The title is shown even with show_title="no", so the box is
+  never blank.
+  Examples:
+    [project_index]                          top-level projects
+    [project_index parent="current"]         sub-projects of this page
+    [project_index category="printmaking"]   everything in Printmaking
+
+[project_groups]
+  Tiles grouped under category headings.
+  under       one category slug; its subcategories become the headings.
+              [project_groups under="form"] on one page and
+              [project_groups under="topics"] on another.
+  categories  slugs in the order you want them shown
+  top_level   yes (default) = only top-level categories get a heading
+  parent      "0" (default), "current", or a Project ID
+  heading     h2 (default), h3, h4 or p
+  other       heading for uncategorised projects (default "Other"). With
+              under=, it is the heading for projects filed in that category
+              but in none of its subcategories. Rename it to suit the page:
+              [project_groups under="topics" other="A Little Bit of Magic"]
+  show_title, size   same as [project_index]
+  Tip: a Project that is itself filed in the category (e.g. a project called
+  "A little bit of magic" in Topics) shows up as one of the tiles. To keep it
+  off the page, untick that category on the Project.
+
+[project_tree]
+  A nested outline of every project and sub-project.
+  parent      Project ID to start from (default 0 = everything),
+              or "current"
+  depth       how many levels to show (default 0 = all)
+  under       a category slug: groups the outline under a heading for each
+              of its subcategories, e.g. [project_tree under="form"]
+  heading     h2 (default), h3, h4 or p: heading level used with under=
+  other       heading for projects in the category but no subcategory
+
+
+======================================================================
+5. LINK ERRORS REPORT
+   Snippet: Project Link Errors
+======================================================================
+
+[project_link_errors]
+  For a page called "Link Errors". Visible only when you are signed in with
+  permission to edit others' posts. Nothing is ever changed or deleted; it only
+  flags things. Shows:
+    - [[pages]] that don't exist yet, and where they were used
+    - a button that checks your external web links (3 at a time)
+    - Related links that point to deleted or trashed entries
+    - Uncategorised blog posts and Journal entries (no category, or only the
+      default "Uncategorized")
+    - Stale Projects (not edited for a while, oldest first)
+    - Projects with no links (no Related links and no [[links]] in or out;
+      an "In tree" column shows whether it at least has a parent or children)
+  stale_days           days without an edit before a Project is stale
+                       (default 180)
+  stale_skip_finished  yes (default) = Projects with Status Finished are not
+                       flagged as stale; no = flag them too
+  Example: [project_link_errors stale_days="365" stale_skip_finished="no"]
+
+
+======================================================================
+6. STATUS, JOURNAL AND GALLERY
+   Snippet: Project Journal
+======================================================================
+
+Journal entries are their own post type (Journal), separate from blog posts,
+so they stay out of the blog feed and the WordPress Reader.
+
+In the editor (no shortcode needed)
+  Journal entries get a "Projects" box: tick one or more Projects. Search box,
+  indented tree, and quick buttons for recently used Projects.
+  Projects get a "Status" box: Idea, In progress or Finished.
+
+[project_status]
+  Project template. Shows "Status: In progress" (or Idea / Finished).
+  Prints nothing if no status is set.
+
+[project_journal]
+  Project template. A board of the blog posts ticked for this Project.
+  Prints nothing when there are none.
+  order             ASC = oldest first (default), DESC = newest first
+  include_children  yes = also include posts ticked for sub-projects
+                    (default no). Good for a parent like Cyanotype.
+  layout            tiles (default) or list
+  show_date         yes (default, month and year only) or no
+  title             heading text (default "Journal"); title="" for none
+  limit             maximum posts
+  size              minimum tile width in pixels (default 160)
+  tag               use a blog tag instead of Project ticks. Works on any
+                    page, e.g. [project_journal tag="cyanotype"]
+  Examples:
+    [project_journal]
+    [project_journal include_children="yes" order="DESC" limit="12"]
+
+[post_project_nav]
+  "Single item: Journal" template, under the Post Content block.
+  "Part of: Cyanotype Project #1" plus links to the previous and next
+  post in each Project. Prints nothing if the post has no Project.
+
+[project_gallery]
+  Sub-projects as tiles under headings. Needs "Project Index & Tree".
+  by            status (default): In progress, Idea, Finished
+                medium: subcategories of your Form category
+                subject: subcategories of your Topics category
+  parent        "current" (default on a Project page), "0" for top-level
+                projects, or a Project ID
+  medium_slug   category used for medium (default form)
+  subject_slug  category used for subject (default topics)
+  unset         heading for projects with no status (default "No status yet")
+  heading       h2 (default), h3, h4 or p
+  show_title, size   same as [project_index]
+  Examples:
+    [project_gallery]                      on the Cyanotype page
+    [project_gallery by="medium" parent="0"]
+    [project_gallery by="subject" parent="0"]
+
+[post_groups]
+  Regular blog posts grouped under headings, for pages like the library.
+  Nothing is hard coded: new categories and tags appear on their own.
+  by           category (default), tag, month or year
+  under        category slug: its subcategories become the headings
+               (posts further down roll up into them). "top" = top-level only.
+  include      only these slugs, comma separated
+  exclude      leave out these slugs, e.g. exclude="uncategorized"
+  min          smallest number of posts a heading needs (default 1)
+  sort_groups  name (default), count (most first), recent
+  order        DESC = newest first (default), ASC
+  limit        maximum posts under each heading
+  layout       list (default) or tiles
+  show_date    yes (default, month and year only) or no
+  show_title   yes (default) or no (tiles only)
+  heading      h2 (default), h3, h4 or p
+  size         minimum tile width in pixels (default 160)
+  post_type    post (default); journal = Journal entries; project = Projects
+  category     only posts in these category slugs, e.g. category="books"
+  title        auto (default) = category name as a title; title="Text"; title="no"
+  flat         yes = one plain list, no group headings
+  subgroup     tag = smaller headings for each tag under each heading
+  other        heading for untagged posts when subgroup="tag" (default "Other")
+  none         text shown when nothing matches (default "No posts found.");
+               none="" shows nothing at all
+  Tiles (layout="tiles") for a post with no image show just the title in the
+  box, like Projects.
+  Examples:
+    [post_groups under="books" layout="tiles"]
+    [post_groups by="tag" min="2" sort_groups="count"]
+    [post_groups by="year"]
+    All the Journal entries in one category, on a page that has no Project:
+    [post_groups post_type="journal" category="cultivated-plants" flat="yes" layout="tiles" none="Nothing planted here yet."]
+    (category= is the category's slug; title="no" removes the automatic
+    category-name title)
+
+
+======================================================================
+7. SORTABLE TABLE OF PROJECTS
+    Snippet: Project Table
+======================================================================
+
+[project_table]
+  One row per Project. Click a column heading to sort; type in the filter
+  box to narrow the rows. Prints nothing if no Projects match.
+  columns       title, status, medium, subject, tags, parent, journal,
+                links, edited, created (default: title,status,medium,
+                subject,tags,journal,edited)
+  status        idea, in-progress, finished, none (comma separated)
+  under         category slug, e.g. under="form"
+  category      category slug(s), subcategories included
+  tag           tag slug(s)
+  parent        "current", a Project ID or a slug (default: all levels)
+  medium_slug   category holding mediums (default form)
+  subject_slug  category holding subjects (default topics)
+  orderby       title (default), modified, date, menu_order
+  order         ASC (default) or DESC
+  limit         maximum rows
+  filter        yes (default) or no
+  Examples:
+    [project_table]
+    [project_table status="in-progress" orderby="modified" order="DESC"]
+    [project_table under="form" columns="title,medium,status,edited"]
+    [project_table parent="current" columns="title,status,journal"]
+
+
+======================================================================
+8. WORK (FINISHED PIECES AND ESSAYS)
+    Snippet: Work
+======================================================================
+
+Work is its own post type (menu: Work). In the editor each piece has a
+"Work details" box: Year, Materials / size, and "Made in Project" (all
+optional).
+After first activating the snippet: Settings > Permalinks > Save once.
+
+[work_index]
+  A gallery of finished work. Natural proportions in columns; pieces with
+  no image (essays) show as a text card.
+  category          category slug(s), subcategories included
+  tag               tag slug(s)
+  project           "current", a Project ID or slug
+  include_children  yes (default) = also Work from sub-projects
+  ids               hand-pick by ID
+  orderby           date (default), year, title, menu_order, modified
+  order             DESC (default) or ASC
+  limit             maximum pieces
+  layout            gallery (default) or tiles (squares)
+  show_title        yes (default) or no
+  show_year         yes (default) or no
+  size              minimum column width in pixels (default 220)
+  none              text shown when nothing matches
+  series            none, current, or Series slug(s): see section 9
+  A piece with no image (an essay) shows as a text card with a thin border.
+  To remove the border, add to Styles > Additional CSS:
+    .work-noimage { display: block; border: 0; padding: 0; }
+
+[work_groups]
+  The same, under headings. Like [project_groups].
+  under             category slug: its subcategories are the headings
+                    e.g. [work_groups under="form"]
+  by                category (default) or year
+  exclude           category slugs to skip, e.g. exclude="uncategorized"
+  other             heading for the left-overs (default "Other")
+  heading           h2 (default), h3, h4 or p
+  series            show (default), collapse or hide: see section 9
+  plus layout, show_title, show_year, size, tag, project, order, orderby
+
+[work_from_project]
+  "Single item: Project" template. "Finished work" made in this Project and
+  its sub-projects. Prints nothing when there is none.
+  title             heading text (default "Finished work"), title="no" for none
+  include_children  yes (default) or no
+  plus layout, show_title, show_year, size, orderby, order, limit
+
+[work_details]
+  "Single item: Work" template. One line: year, materials, a link to the
+  Project it was made in, and its Series (all linked where possible).
+
+
+======================================================================
+9. SERIES (BODIES OF WORK)
+   Snippet: Work
+======================================================================
+Work > Series in the admin. Each Series has a name, a description (your
+statement), and an optional cover image. Tick one or more Series on a piece
+in the editor, or in the [add_work] form. After first activating: Settings >
+Permalinks > Save once.
+
+[work_series]
+  Tiles for your Series: cover, name, number of pieces. Each opens that
+  Series' page (/series/name/). Prints nothing when there are none.
+  category    only Series with a piece in these category slug(s)
+  orderby     recent (default), name, count
+  order       DESC (default) or ASC
+  limit       maximum Series
+  layout      gallery (default) or tiles
+  size        minimum column width in pixels (default 220)
+  title       heading above the tiles (default none)
+  heading     h2 (default), h3, h4 or p
+  none        text when there are no Series
+
+[work_groups series="..."]
+  show (default)  every piece listed, as before
+  collapse        pieces in a Series become one Series tile under each
+                  heading; single pieces stay as they are. Nothing twice.
+  hide            only pieces that are in no Series
+  Example: [work_groups under="form" series="collapse"]
+
+[work_index series="..."]
+  none            only pieces in no Series
+  current         the Series page being viewed (use in the Series template)
+  slug(s)         only those Series, e.g. series="allerdale-hall"
+
+Series page template: Appearance > Editor > Templates > Series Archive.
+  Add a Query Title block, a Term Description block (your statement), then a
+  Shortcode block: [work_index series="current" layout="gallery"]
+  (remove any Query Loop block there).
+
+
+======================================================================
+10. WHERE EACH ONE GOES (quick guide)
+======================================================================
+
+Single item: Project template
+    [project_breadcrumbs]
+    [project_status]
+    (Post Content block)
+    [project_children]  [project_related]  [project_links]  [project_videos]
+    [project_backlinks]  [project_same_tags]  [project_journal]
+    [work_from_project]   (finished Work made in this Project)
+    [project_gallery]     (on parent pages like Cyanotype)
+
+Single item: Journal template
+    (Post Content block)
+    [post_project_nav]
+
+Single item: Work template
+    Post Title, Featured Image, [work_details], Post Content
+    (do not use [post_project_nav] here; it is for Journal entries)
+
+Series Archive template
+    Query Title, Term Description, [work_index series="current"]
+
+Pages
+    Projects home        [project_gallery by="medium" parent="0"]
+    Medium / Subject     [project_groups under="form"]  /  [project_groups under="topics"]
+    All projects         [project_table]
+    Library              [post_groups under="books" layout="tiles"]
+    Gallery              [work_groups under="form" series="collapse"]
+                         or: [work_series title="Bodies of work"]
+                             [work_groups under="form" series="hide"]
+    Add Project          [add_project]
+    Add Journal entry    [add_journal]
+    Add Work             [add_work]
+    Add Pin              [add_pin]
+    Link Errors          [project_link_errors]
+    Garden (no Project)  [post_groups post_type="journal" category="cultivated-plants" flat="yes" layout="tiles"]
+    Apothecary           [project_groups under="topics" other="A Little Bit of Magic"]
+
+
+======================================================================
+11. PINS
+======================================================================
+
+[pin_collection] is from your Pins snippet and is unchanged. [add_pin] is
+described under "Adding new entries" above.
+
+
+======================================================================
+12. ONE-TIME TASKS AND HOUSEKEEPING
+======================================================================
+
+Moving posts into the Journal (snippet: Convert to Journal, use once, then
+switch off)
+  Tools > Convert to Journal (in the admin) moves blog posts into the Journal
+  type, and back again. Posts that already have a Project ticked are
+  pre-selected.
+
+After first turning on the Journal, Work or Series snippets
+  Settings > Permalinks > Save once, so /journal/, /work/ and /series/ work.
+
+Adding a new content type later
+  Add its name to the one list in "Archive Post Types" and in "Tag Cloud"
+  (currently post, project, journal, work; the tag cloud also has book).
+
+Admin-only pages
+  Add the page slugs ('add-journal', 'add-work', 'link-errors') to your
+  nba_admin_only_pages() list so they stay hidden from visitors and search.
+
+Backups (the site is not self-hosted)
+  - Content: Tools > Export > All content (an XML file; check that Journal,
+    Work and Pins are included).
+  - Everything, including media: a Jetpack / VaultPress full backup.
+  - Media only: the media export option linked from Tools > Export.
+  - Your snippets: Code Snippets > Export (the "Website" Project in claude.ai
+    holds copies of many of them too, but it is not a backup).
+  Do this now and then, and before running any one-time tool below.
+
+
+======================================================================
+13. ADMIN TOOLS (no shortcode: they live in the admin menus)
+======================================================================
+
+Unattached entries   (snippet: Unattached Journal Entries)
+  Journal > Unattached entries. Lists every Journal entry that is not attached
+  to a Project (including entries whose Project was deleted), with its date and
+  the start of its text.
+  - Pick a Project for each (and an optional second one), then press Save.
+  - Tick several, choose a Project at the top, press Fill in, then Save.
+  - "Looks related" buttons suggest Projects whose names appear in the entry.
+  - Tick "No project needed" for entries that should stand alone. They leave
+    the list; "Show the ones I set aside" brings them back.
+  - "Include blog posts" adds blog posts to the list.
+  Nothing is deleted and untouched entries are not changed. Safe to leave on.
+
+Media categories   (snippet: Media Categories)
+  Media > Media categories: make your own categories (they can be nested).
+  - A dropdown in the Media Library (grid and list) and in every picture
+    picker (featured image, Image block, your Add forms): All categories,
+    Uncategorised only, Only: X, or Everything except: X.
+  - Media > Sort into categories: files pictures by where they are used (for
+    example every Book's cover into "Book covers"). It only adds a category to
+    pictures that have none; it never removes or changes one. Below that is a
+    list of pictures still uncategorised, with where each is really used and
+    a tick box, so you can file the stragglers by hand.
+  - In the Media Library List view: tick pictures, then Bulk actions >
+    "Add to category: X" or "Remove from all categories".
+  - A column "Actually used on" in the List view. (WordPress's own "Uploaded
+    to" only records the entry that was open when the file was first
+    uploaded; it is never updated when you use the picture elsewhere.)
+
+Book covers   (snippet: Book Cover Category)
+  Any picture set as a Book's featured image is filed into the "Book covers"
+  media category automatically. It needs the Media Categories snippet. Run
+  Media > Sort into categories once for covers that were already there.
+
+Remove Spacers   (snippet: Remove Spacers; use it, then switch it off)
+  Tools > Remove Spacers. Finds Spacer blocks of a height or a range:
+    40-55    any height from 40px to 55px (the default)
+    42px     exactly that height
+  Lists the entries that have them, with the exact heights found, and lets you
+  untick any entry to leave alone. A copy of each original is kept; use
+  "Restore" in the Undo list to put one back. Spacers in Site Editor templates
+  are not touched. Ranges compare pixel heights only.
+
+
+======================================================================
+14. DESIGN RECIPES (Styles > Additional CSS and block settings)
+======================================================================
+
+Image with text over it (the home page)
+  Blocks, in List View:
+    Group, class  image-overlay
+      Image   (no top-page-image class; border and radius 0)
+      Group, class  overlay-text
+        the paragraphs
+  Classes go in Advanced > Additional CSS class(es), without a dot.
+  CSS (Styles > Additional CSS):
+
+    .image-overlay { position: relative; max-width: 520px; margin: 0 auto; overflow: hidden; }
+    .image-overlay .wp-block-image,
+    .image-overlay .wp-block-image img { display: block; width: 100%; height: auto; margin: 0; border: 0 !important; border-radius: 0 !important; }
+    .image-overlay .overlay-text { position: absolute; left: 5%; right: 5%; bottom: 5%; margin: 0; padding: 24px; color: #fff; background: rgba(0,0,0,.55); box-shadow: 0 0 40px 40px rgba(0,0,0,.55); font-size: clamp(14px, 3.2vw, 18px); }
+    .image-overlay .overlay-text p { margin: 0 0 12px; }
+    .image-overlay .overlay-text p:last-child { margin-bottom: 0; }
+
+    @media (max-width: 600px) {
+      .image-overlay { overflow: visible; background: #000; }
+      .image-overlay .wp-block-image { position: relative; }
+      .image-overlay .wp-block-image::after { content: ""; position: absolute; left: 0; right: 0; bottom: 0; height: 35%; background: linear-gradient(to bottom, rgba(0,0,0,0), #000); pointer-events: none; }
+      .image-overlay .overlay-text { position: relative; left: auto; right: auto; bottom: auto; margin: -46% 0 0; padding: 24px 5%; background: none; box-shadow: none; font-size: 16px; text-shadow: 0 1px 4px rgba(0,0,0,.9), 0 0 12px rgba(0,0,0,.7); }
+      .image-overlay figcaption { display: none; }
+    }
+
+  On a laptop the text sits in a soft dark panel at the bottom of the picture.
+  On a phone it starts two thirds of the way down and runs on over black.
+  Move the text: change bottom/top/left/right in .overlay-text. On phones,
+  -46% is where the text starts (picture height / width / 3 x 100).
+
+A page title kept for navigation but not shown
+  .home .wp-block-post-title { position: absolute !important; width: 1px; height: 1px; margin: -1px; padding: 0; overflow: hidden; clip: rect(0,0,0,0); white-space: nowrap; border: 0; }
+  (The title still works in menus, the browser tab and search results.)
+
+Tight lines in one section (a list of titles, for example)
+  Select the paragraphs, Group them, then in the Group's settings:
+  Styles > Dimensions > Block spacing, set a small value such as 4px.
+  Only that Group changes; the site-wide paragraph spacing stays.
+
+Paragraph spacing on a phone
+  Use Styles > Layout (or Typography) > Block spacing for the site-wide gap
+  between blocks, rather than spacer blocks. Remove old spacers with
+  Tools > Remove Spacers.

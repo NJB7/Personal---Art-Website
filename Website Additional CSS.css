@@ -1,0 +1,1020 @@
+/* Adjust link underline thickness and spacing */
+/* 
+COLOURS USED
+#2a0052  - Site background & dark text when something like a button has a light background- dark purple
+#fa14b9  - Pin card background - pink
+#ffffde  - Pin card title & most links - light yellow
+#ffffeb  - Pin card description and most text/paragraphs/some headings - very pale yellow
+#ffffbd - bonus darker yellow. Not used yet
+#f6f6f6 - bonus light beige. Not used yet
+WORDPRESS THEME COLOURS
+var(--wp--preset--color--tertiary) - Search background
+var(--wp--preset--color--primary)   - Search button icon
+*/
+
+a:any-link {
+  text-decoration-thickness: .01em !important;
+  text-underline-offset: .20em;
+}
+
+a
+
+/* Remove underlines from links when hovered */
+a:where(:not(.wp-element-button)):hover {
+  text-decoration: none;
+}
+
+
+/* Style the search field and search block */
+.wp-block-search__input,
+.wp-block-search {
+  font-size: 0.8rem;
+  background-color: var(--wp--preset--color--tertiary);
+  line-height: 1.2;
+  border-radius: 8px;
+}
+
+/* Style the search button */
+.wp-block-search__button {
+  font-size: 0.8rem;
+  background-color: var(--wp--preset--color--tertiary);
+  line-height: 1;
+  border-radius: 2px;
+  padding: 6px;
+}
+
+/* Set the search button icon color */
+.wp-block-search__button svg {
+  fill: var(--wp--preset--color--primary);
+}
+
+/* Set the caption size */
+.wp-block-image figcaption {
+  font-size: 12px !important;
+}
+
+
+/* Remove bullets from category and term lists */
+.wp-block-categories-list,
+.wp-block-categories-list ul,
+.wp-block-term-list,
+.wp-block-term-list ul {
+  list-style-type: none !important;
+}
+
+/* Remove default indentation from top-level lists */
+.wp-block-categories-list,
+.wp-block-term-list {
+  padding-left: 0 !important;
+  margin-left: 0 !important;
+}
+
+/* Add indentation to nested lists */
+.wp-block-categories-list ul,
+.wp-block-term-list ul {
+  padding-left: 20px !important;
+  margin-left: 0 !important;
+}
+
+/* Adjust spacing inside the search block's wrapper */
+:where(.wp-block-search__button-inside .wp-block-search__inside-wrapper) {
+  margin-left: 12px;
+  margin-right: 2px;
+  margin-top: 2px;
+  margin-bottom: 2px;
+}
+
+
+/* Fade an element in and out */
+.fadeinout {
+  opacity: 0;
+  animation: fadeCycle 11s linear infinite;
+}
+
+@keyframes fadeCycle {
+  0% {
+    opacity: 0;
+  }
+
+  45.45% {
+    opacity: 1;
+  }
+
+  100% {
+    opacity: 0;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .fadeinout {
+    animation: none;
+    opacity: 1;
+  }
+}
+
+/* Fade from invisible to visible */
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+  }
+
+  to {
+    opacity: 1;
+  }
+}
+
+/* Fade from visible to invisible */
+@keyframes fadeOut {
+  from {
+    opacity: 1;
+  }
+
+  to {
+    opacity: 0;
+  }
+}
+
+
+/* ============================================================
+   PIN COLLECTION
+   ============================================================ */
+
+/* Create a five-column Pinterest-style masonry layout */
+.pin-collection {
+  column-count: 5;
+  column-gap: 24px;
+}
+
+.pin-infinite-wrapper {
+  width: 100%;
+  max-width: 1400px;
+  margin-left: auto;
+  margin-right: auto;
+}
+
+
+/* ============================================================
+   PIN CARDS
+   Force Pin formatting to override the WordPress theme
+   ============================================================ */
+
+/* Pin card */
+.pin-view .pin-card {
+  break-inside: avoid;
+  margin-bottom: 24px;
+  overflow: hidden;
+  border-radius: 8px;
+  background: #ffffeb !important;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.12);
+  transition: transform 0.2s ease, box-shadow 0.2s ease;
+}
+
+/* Lift card on hover */
+.pin-view .pin-card:hover {
+  transform: translateY(-4px);
+  box-shadow: 0 6px 16px rgba(0, 0, 0, 0.18);
+}
+
+/* Pin images */
+.pin-view .pin-card img {
+  display: block;
+  width: 100%;
+  height: auto;
+  cursor: pointer;
+}
+
+
+/* ============================================================
+   PIN LINKS
+   ============================================================ */
+
+/* Make the entire Pin clickable */
+.pin-view .pin-card-link {
+  display: block;
+  color: #2a0052 !important;
+  text-decoration: none !important;
+}
+
+/* Remove underlines from everything inside clickable Pins */
+.pin-view .pin-card-link,
+.pin-view .pin-card-link *,
+.pin-view .pin-card-link:hover,
+.pin-view .pin-card-link:hover * {
+  text-decoration: none !important;
+}
+
+
+/* ============================================================
+   PIN TITLES
+   ============================================================ */
+
+/* Pin title */
+.pin-view .pin-card h2,
+.pin-view .pin-card-link h2 {
+  box-sizing: border-box !important;
+  display: block !important;
+  width: auto !important;
+  max-width: 100% !important;
+  min-width: 0 !important;
+
+  font-size: 18px !important;
+  line-height: 1.2 !important;
+  font-weight: inherit !important;
+
+  margin: 0 0 6px 0 !important;
+  padding: 16px 16px 0 16px !important;
+
+  color: #fa14b9 !important;
+
+  overflow-wrap: break-word !important;
+  word-wrap: break-word !important;
+}
+
+/* Keep title links pink and contained within the title */
+.pin-view .pin-card h2 a,
+.pin-view .pin-card-link h2 a {
+  display: inline !important;
+  max-width: 100% !important;
+  color: #fa14b9 !important;
+  text-decoration: none !important;
+  overflow-wrap: break-word !important;
+  word-wrap: break-word !important;
+}
+
+/* Make sure long words/URLs cannot push the title outside the card */
+.pin-view .pin-card h2 *,
+.pin-view .pin-card-link h2 * {
+  max-width: 100% !important;
+  overflow-wrap: break-word !important;
+  word-wrap: break-word !important;
+}
+
+
+/* ============================================================
+   PIN DESCRIPTION
+   ============================================================ */
+
+/*
+   The PHP creates .pin-description around the Pin content.
+   This gives every Pin a consistent description area regardless
+   of the WordPress theme's paragraph formatting.
+*/
+
+.pin-view .pin-card .pin-description {
+  display: block !important;
+  box-sizing: border-box !important;
+  width: 100% !important;
+  margin: 0 !important;
+  padding: 0 16px 16px 16px !important;
+  color: #2a0052 !important;
+  font-size: 16px !important;
+  line-height: 1.4 !important;
+  font-weight: normal !important;
+}
+
+/* Paragraphs inside Pin descriptions */
+.pin-view .pin-card .pin-description p {
+  box-sizing: border-box !important;
+  margin: 0 !important;
+  padding: 0 !important;
+  color: #2a0052 !important;
+  font-size: 16px !important;
+  line-height: 1.4 !important;
+  font-weight: normal !important;
+}
+
+/* Force all description text to use Pin colour */
+.pin-view .pin-card .pin-description *,
+.pin-view .pin-card .pin-description a {
+  color: #2a0052 !important;
+}
+
+/* Description links */
+.pin-view .pin-card .pin-description a {
+  text-decoration: none !important;
+}
+
+
+/* ============================================================
+   PIN TITLE LINKS
+   ============================================================ */
+
+/* Keep Pin titles pink even if the theme styles links */
+.pin-view .pin-card h2 a,
+.pin-view .pin-card-link h2 a,
+.pin-view .pin-card h2 a *,
+.pin-view .pin-card-link h2 a * {
+  color: #fa14b9 !important;
+  text-decoration: none !important;
+}
+
+
+/* ============================================================
+   PIN TABS
+   ============================================================ */
+
+.pin-tabs {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 40px;
+}
+
+.pin-tabs .pin-tab {
+  margin: 0;
+  padding: 10px 5px;
+  cursor: pointer;
+  font-size: 24px;
+  font-weight: 500;
+}
+
+.pin-tabs .pin-tab.active {
+  font-weight: 700;
+  border-bottom: 3px solid currentColor;
+}
+
+
+/* ============================================================
+   MOBILE PIN LAYOUT
+   ============================================================ */
+
+@media (max-width: 600px) {
+  .pin-collection {
+    column-count: 2;
+    column-gap: 12px;
+  }
+}
+
+
+/* ============================================================
+   PAGE IMAGES
+   ============================================================ */
+
+/* Format the doorway images and the top of each page */
+
+.wp-block-image.top-page-image {
+  width: 400px;
+  max-width: 100%;
+  margin-left: auto;
+  margin-right: auto;
+}
+
+.wp-block-image.top-page-image img {
+  width: 100%;
+  height: auto;
+}
+
+/* Format the doorway images for the "back to groundplan" doors */
+
+.wp-block-image.portal-to-hall-of-doors img {
+  border-radius: 20px !important;
+  padding: 8px !important;
+  overflow: hidden;
+  display: block;
+}
+
+
+/* ============================================================
+   BOOKS READ IN YEAR
+   ============================================================ */
+
+/* Format the entries on the Books Read in Year page */
+
+.book-read-year {
+  display: flex !important;
+  flex-direction: row !important;
+  gap: 20px;
+  margin-bottom: 30px;
+  align-items: flex-start;
+}
+
+.book-read-year-cover img {
+  width: 120px;
+  height: auto;
+  display: block;
+}
+
+.book-read-year-info {
+  padding-top: 5px;
+}
+
+.book-read-year-title {
+  font-size: 18px;
+}
+
+.book-read-year-author {
+  margin-top: 5px;
+  font-size: 18px;
+}
+
+.book-read-year-date,
+.book-read-year-date *,
+.book-read-year-rating,
+.book-read-year-rating * {
+  font-size: 16px;
+  font-weight: normal;
+  margin-top: 5px;
+}
+
+
+/* ============================================================
+   FOOTER
+   ============================================================ */
+
+/* Remove uncategorised category from footer list */
+
+.wp-block-categories-list .cat-item-1 {
+  display: none;
+}
+
+
+/* ============================================================
+   QUICK ADD PIN
+   ============================================================ */
+
+.quick-add-pin {
+  max-width: 700px;
+  margin: 0 auto;
+}
+
+.quick-add-pin input[type="url"],
+.quick-add-pin input[type="text"],
+.quick-add-pin textarea {
+  width: 100%;
+  box-sizing: border-box;
+  padding: 12px;
+  font-size: 16px;
+}
+
+.quick-add-pin textarea {
+  resize: vertical;
+}
+
+
+/* ============================================================
+   TAG SELECTOR
+   ============================================================ */
+
+.quick-pin-tag-box {
+  position: relative;
+  width: 100%;
+  box-sizing: border-box;
+  border: 1px solid #ccc;
+  padding: 6px;
+  background: #fff;
+}
+
+.quick-pin-selected-tags {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 6px;
+}
+
+.quick-pin-tag {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  padding: 6px 9px;
+  background: #2a0052;
+  color: #ffffde;
+  border-radius: 4px;
+  font-size: 14px;
+}
+
+.quick-pin-tag-remove {
+  border: 0;
+  background: transparent;
+  color: #ffffde;
+  cursor: pointer;
+  padding: 0;
+  font-size: 16px;
+  line-height: 1;
+}
+
+.quick-pin-tag-input {
+  border: 0 !important;
+  outline: none;
+  padding: 8px !important;
+  width: 100%;
+  box-sizing: border-box;
+}
+
+.quick-pin-tag-suggestions {
+  position: absolute;
+  left: 6px;
+  right: 6px;
+  top: 100%;
+  z-index: 1000;
+  background: #fff;
+  border: 1px solid #ccc;
+  border-top: 0;
+  box-shadow: 0 3px 8px rgba(0, 0, 0, 0.15);
+  display: none;
+  max-height: 220px;
+  overflow-y: auto;
+}
+
+.quick-pin-tag-suggestion {
+  padding: 10px 12px;
+  cursor: pointer;
+  color: #2a0052;
+  background: #fff;
+}
+
+.quick-pin-tag-suggestion:hover {
+  background: #ffffde;
+}
+
+
+/* ============================================================
+   BUTTONS
+   ============================================================ */
+
+.quick-pin-button,
+.quick-pin-publish-button,
+.quick-pin-secondary-button {
+  padding: 12px 20px;
+  border: 0;
+  cursor: pointer;
+  font-size: 16px;
+}
+
+.quick-pin-button {
+  background: #eee;
+  color: #222;
+}
+
+.quick-pin-publish-button {
+  background: #2a0052;
+  color: #ffffde;
+}
+
+.quick-pin-secondary-button {
+  background: #eee;
+  color: #222;
+}
+
+.quick-pin-actions {
+  display: flex;
+  gap: 10px;
+  flex-wrap: wrap;
+}
+
+
+/* ============================================================
+   PREVIEW
+   ============================================================ */
+
+.quick-pin-preview {
+  margin-top: 20px;
+}
+
+.quick-pin-image-preview {
+  margin: 20px 0;
+  text-align: center;
+}
+
+.quick-pin-image-preview img {
+  max-width: 100%;
+  max-height: 500px;
+  width: auto;
+  height: auto;
+  display: inline-block;
+}
+
+.quick-pin-no-image {
+  padding: 30px;
+  background: #f6f6f6;
+  text-align: center;
+}
+
+.quick-pin-success {
+  padding: 15px;
+  margin-bottom: 20px;
+  background: #eee;
+}
+
+.quick-pin-error {
+  padding: 15px;
+  margin-bottom: 20px;
+  background: #ffe5e5;
+}
+
+.quick-pin-warning {
+  padding: 15px;
+  margin-bottom: 20px;
+  background: #fff4cc;
+}
+
+.quick-pin-help {
+  font-size: 14px;
+}
+
+
+/* ============================================================
+   MOBILE QUICK ADD PIN
+   ============================================================ */
+
+@media (max-width: 600px) {
+
+  .quick-add-pin {
+    width: 100%;
+  }
+
+  .quick-pin-actions {
+    flex-direction: column;
+  }
+
+  .quick-pin-button,
+  .quick-pin-publish-button,
+  .quick-pin-secondary-button {
+    width: 100%;
+    padding: 15px;
+  }
+
+  .quick-pin-image-preview img {
+    max-height: 350px;
+  }
+}
+
+
+/* ============================================================
+   LEGACY FULL PIN LINK
+   ============================================================ */
+
+/* Keep these only if any older Pins still use .full-pin-link */
+
+.full-pin-link {
+  display: block;
+  text-decoration: none !important;
+  color: inherit;
+}
+
+.full-pin-link:hover {
+  text-decoration: none !important;
+}
+
+.full-pin-link img {
+  display: block;
+  width: 100%;
+  height: auto;
+}
+
+.full-pin-link h2 {
+  color: #fa14b9;
+}
+
+.full-pin-link p {
+  color: #2a0052;
+}
+
+/* ============================================================
+   Add Read form - larger text
+   ============================================================ */
+
+.quick-add-read {
+  font-size: 18px;
+}
+
+.quick-add-read label,
+.quick-add-read strong,
+.quick-add-read p {
+  font-size: 18px;
+}
+
+.quick-add-read input,
+.quick-add-read select,
+.quick-add-read button,
+.quick-add-read textarea {
+  font-size: 18px;
+}
+
+.quick-add-read input,
+.quick-add-read select {
+  min-height: 48px;
+  padding: 8px 12px;
+}
+
+.quick-add-read button {
+  padding: 10px 18px;
+}
+
+.quick-read-suggestion,
+.quick-read-selected,
+.quick-read-tag {
+  font-size: 18px;
+}
+
+.quick-read-help,
+.quick-add-read small {
+  font-size: 16px;
+}
+
+/* Vary size and shade so the text tiles feel like a cloud */
+/* body.tag .wp-block-post-template>li:not(.has-post-thumbnail):nth-child(3n) .wp-block-post-title {
+  font-size: 35px;
+}
+
+body.tag .wp-block-post-template>li:not(.has-post-thumbnail):nth-child(3n+1) .wp-block-post-title {
+  font-size: 20px;
+  font-style: italic;
+}
+
+body.tag .wp-block-post-template>li:not(.has-post-thumbnail):nth-child(2n) {
+  background: #ffffeb;
+} */
+
+/* body.tag li:not(.has-post-thumbnail):nth-child(3n+1) .wp-block-post-title {
+  font-size: 20px;
+  font-style: italic;
+} */
+
+/* body.tag li:not(.has-post-thumbnail):nth-child(2n) {
+  background: #ffffeb;
+} */
+
+/* Pin grid on tag and category pages, image posts first */
+:is(body.tag, body.category) .wp-block-post-template {
+  display: grid !important;
+  grid-template-columns: repeat(auto-fill, minmax(240px, 1fr));
+  gap: 20px;
+  align-items: start;
+  padding: 0;
+  list-style: none;
+}
+
+:is(body.tag, body.category) .wp-block-post-template>li {
+  margin: 0;
+  border-radius: 12px;
+  overflow: hidden;
+}
+
+:is(body.tag, body.category) .wp-block-post-template>li.has-post-thumbnail {
+  order: -1;
+}
+
+/* Image pins: pink card, image flush at the top */
+:is(body.tag, body.category) .wp-block-post-template>li.has-post-thumbnail {
+  background: #fa14b9;
+}
+
+:is(body.tag, body.category) .wp-block-post-featured-image,
+:is(body.tag, body.category) .wp-block-post-featured-image img {
+  width: 100%;
+  height: auto !important;
+  aspect-ratio: auto !important;
+  margin: 0;
+  display: block;
+}
+
+/* Cap tall images and crop the overflow */
+:is(body.tag, body.category) .wp-block-post-featured-image img {
+  max-height: 360px;
+  object-fit: cover;
+  object-position: center;
+}
+
+:is(body.tag, body.category) li.has-post-thumbnail .wp-block-post-title {
+  font-size: 16px;
+  margin: 0;
+  padding: 12px 14px;
+}
+
+:is(body.tag, body.category) li.has-post-thumbnail .wp-block-post-title a {
+  color: #ffffde;
+  text-decoration: none;
+}
+
+:is(body.tag, body.category) li.has-post-thumbnail .wp-block-post-excerpt {
+  color: #ffffeb;
+  margin: 0;
+  padding: 0 14px 14px;
+}
+
+/* Posts without an image: text tiles */
+:is(body.tag, body.category) .wp-block-post-template>li:not(.has-post-thumbnail) {
+  padding: 24px 20px;
+  background: #ffffde;
+  text-align: center;
+}
+
+:is(body.tag, body.category) li:not(.has-post-thumbnail) .wp-block-post-title {
+  margin: 0;
+  line-height: 1.1;
+  font-size: 26px;
+}
+
+:is(body.tag, body.category) li:not(.has-post-thumbnail) .wp-block-post-title a {
+  color: #2a0052;
+  text-decoration: none;
+}
+
+/* Stop descenders being cut off in the archive title */
+:is(body.tag, body.category) .wp-block-query-title {
+  line-height: 1.3;
+  padding-bottom: 4px;
+  overflow: visible;
+}
+
+/* Doorway image at the bottom of projects, pins, and posts */
+.wp-block-image.post-doorway {
+  width: 300px;
+  max-width: 100%;
+}
+
+.wp-block-image.post-doorway img {
+  width: 100%;
+  height: auto;
+  border-radius: 20px !important;
+}
+
+/* Dark purple post titles on search results */
+body.search .wp-block-post-template .wp-block-post-title a {
+  color: #2a0052 !important;
+}
+
+/* Footer search: purple gap, kept clear of the categories */
+footer .wp-block-search {
+  background-color: transparent;
+  box-sizing: border-box;
+  max-width: 100%;
+  padding-right: 24px;
+}
+
+footer .wp-block-search__inside-wrapper {
+  background-color: transparent;
+  gap: 8px;
+}
+
+footer .wp-block-search__input {
+  min-width: 0;
+}
+
+/* Read Instance cover: half size */
+body.single-read_instance .wp-block-post-featured-image {
+  width: 50% !important;
+  max-width: 50% !important;
+}
+
+body.single-read_instance .wp-block-post-featured-image img {
+  width: 100% !important;
+  height: auto !important;
+  aspect-ratio: auto !important;
+}
+
+/* Read Instance cover: push to the right, closer to the text */
+body.single-read_instance .wp-block-post-featured-image {
+  margin-left: auto !important;
+  margin-right: 0 !important;
+  text-align: right;
+}
+
+/* body.single-read_instance .wp-block-columns {
+  gap: 1rem !important;
+} */
+
+/* Gap between the cover and the text */
+/* body.single-read_instance .wp-block-columns {
+  gap: 16px !important;
+}
+
+/* Tally line on the Books Read pages */
+/* .books-read-summary {
+  font-size: 19px;
+  margin-bottom: 24px;
+} */
+
+.home .wp-block-post-title {
+  position: absolute !important;
+  width: 1px;
+  height: 1px;
+  margin: -1px;
+  padding: 0;
+  overflow: hidden;
+  clip: rect(0, 0, 0, 0);
+  white-space: nowrap;
+  border: 0;
+}
+
+.image-overlay {
+  position: relative;
+  max-width: 520px;
+  margin: 0 auto;
+  overflow: hidden;
+}
+
+.image-overlay .wp-block-image,
+.image-overlay .wp-block-image img {
+  display: block;
+  width: 100%;
+  height: auto;
+  margin: 0;
+  border: 0 !important;
+  border-radius: 0 !important;
+}
+
+.image-overlay .overlay-text {
+  position: absolute;
+  left: 5%;
+  right: 5%;
+  bottom: 5%;
+  margin: 0;
+  padding: 16px;
+  color: #fff;
+  background: rgba(0, 0, 0, 0.55);
+  box-shadow: 0 0 40px 40px rgba(0, 0, 0, 0.55);
+  padding: 24px;
+  font-size: clamp(14px, 3.2vw, 18px);
+}
+
+.image-overlay .overlay-text p {
+  margin: 0 0 12px;
+}
+
+.image-overlay .overlay-text p:last-child {
+  margin-bottom: 0;
+}
+
+.tight-list>* {
+  margin-block-start: 4px !important;
+  margin-block-end: 0 !important;
+}
+
+/* Image with text overlay */
+.image-overlay {
+  position: relative;
+  max-width: 520px;
+  margin: 0 auto;
+  overflow: hidden;
+}
+
+.image-overlay .wp-block-image,
+.image-overlay .wp-block-image img {
+  display: block;
+  width: 100%;
+  height: auto;
+  margin: 0;
+  border: 0 !important;
+  border-radius: 0 !important;
+}
+
+.image-overlay .overlay-text {
+  position: absolute;
+  left: 5%;
+  right: 5%;
+  bottom: 5%;
+  margin: 0;
+  padding: 24px;
+  color: #fff;
+  background: rgba(0, 0, 0, 0.55);
+  box-shadow: 0 0 40px 40px rgba(0, 0, 0, 0.55);
+  font-size: clamp(14px, 3.2vw, 18px);
+}
+
+.image-overlay .overlay-text p {
+  margin: 0 0 12px;
+}
+
+.image-overlay .overlay-text p:last-child {
+  margin-bottom: 0;
+}
+
+/* Phones: text starts two thirds down, then runs onto black */
+@media (max-width: 600px) {
+  .image-overlay {
+    overflow: visible;
+    background: #000;
+  }
+
+  .image-overlay .wp-block-image {
+    position: relative;
+  }
+
+  .image-overlay .wp-block-image::after {
+    content: "";
+    position: absolute;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    height: 35%;
+    background: linear-gradient(to bottom, rgba(0, 0, 0, 0), #000);
+    pointer-events: none;
+  }
+
+  .image-overlay .overlay-text {
+    position: relative;
+    left: auto;
+    right: auto;
+    bottom: auto;
+    margin: -46% 0 0;
+    padding: 24px 5%;
+    background: none;
+    box-shadow: none;
+    font-size: 16px;
+    text-shadow: 0 1px 4px rgba(0, 0, 0, 0.9), 0 0 12px rgba(0, 0, 0, 0.7);
+  }
+
+  .image-overlay figcaption {
+    display: none;
+  }
+}

@@ -1,0 +1,146 @@
+Newsletter Token
+eyJ0eXAiOiJKV1QiLCJhbGciOiJSUzI1NiJ9.eyJhdWQiOiI0IiwianRpIjoiMmU3NWViMTczZTUyZjNlYWEwMDI0NmY0ZGY4NjczNTY1ZTlhNDQ0YWU4N2FhMjY3ODdkMGYzZTI2MTVhMTIzYzNkMWZkOTZmZmIzZTBkNDciLCJpYXQiOjE3ODc4MTQ1MzUuMDQ1MDM1LCJuYmYiOjE3ODc4MTQ1MzUuMDQ1MDM3LCJleHAiOjQ5NDM0ODgxMzUuMDM4OTI2LCJzdWIiOiIyNjE3OTA5Iiwic2NvcGVzIjpbXX0.gRc0-iCtLB59Wr8htSEOt85nnZV-osvXwJXEiRt7pkHBP5B4Kij07VAe_PtFv7chfmLN7U02YgK62x0kvQ6Q7UTqOBFgM9ZREYJ2Ksbrdhrymv7iO6QKZcdgKlc7GOQIMIual7YaRH0Fje3iKAu4VflFZCul7ofpSuGOq5QbhbMIF8Wdd6PCNj96CZOdzNAhgS8tu_9sMmKazfZfTNYQZoo2oVILhdoIREvBX3cxn5Bp3c4kFD7cIRm1LJHjQAQb7DeAqMSDw73Pd3QlO9VvWmiECDPMUMYwQXjc42luIl38Bzg4B9Luc_m3BfGJPWKIxJSzHyyM6ztiZLkirOKzddeX0A4HTQdNFcrsQHusXLZbS3oO6LQRcxzGmwTx2Au9zoIVg678wqLh2WLzLydU_g7aS4UBNdeI9-ftVqyCJF4hEjuc4hSel-kcmoxYI0QJt7Xlsl3jUB4lgxndvbCVPW7-Gv_EuB8VZtoWh9w4rBi7gXFoJ4dBz7Fx_QKRoCHX-PLnLa8MVZs8xO-3pMdfw0unC-5MZLQWXqOQy47rXhM5aLDSO_X-YQokwlGwGXhLKSA598eCraFBbPzJmaly0j12idx0GjrvD5h1SNNNTcU1oSDnwplCsttzxBp2QUUV84q2qrCyfRoeJhNdf8hf-H1iDtHkzTy_vG9agZIiaOI
+
+
+
+max-height: 700px; overflow-y: auto;
+
+selector .ghost {
+    opacity: 0;
+    transition: 0.3s ease-in-out;
+}
+
+selector: hover .ghost {
+    opacity: 1;
+}
+
+opacity: 0;
+transition: opacity 0.3s ease-in-out;
+
+:hover {
+    opacity: 1;
+}
+
+
+animation:
+  fadeIn 5s linear,
+  fadeOut 5s linear 5s,
+  fadeIn 5s linear 10s,
+  fadeOut 5s linear 15s,
+  fadeIn 5s linear 20s,
+  fadeOut 5s linear 25s,
+  fadeIn 5s linear 30s forwards;
+
+F12, Console, paste:
+
+console.table(
+  [...document.querySelectorAll('h2')].map(h => ({
+    Country: h.innerText.trim(),
+    'Additional CSS classes': [...h.classList]
+      .filter(c => c !== 'wp-block-heading')
+      .join(' '),
+    'HTML anchor': h.id || ''
+  }))
+)
+
+<div style="position: relative; width: 100%; height: 0; padding-top: 290.2056%; padding-bottom: 0; box-shadow: 0 2px 8px 0 rgba(63,69,81,0.16); margin-top: 1.6em; margin-bottom: 0.9em; overflow: hidden; border-radius: 8px; will-change: transform;">  <iframe loading="lazy" style="position: absolute; width: 100%; height: 100%; top: 0; left: 0; border: none; padding: 0;margin: 0;"    src="https://www.canva.com/design/DAHWK-PMOuE/QexB2WRUFqT7mDDA0XcFTQ/view?embed" allowfullscreen="allowfullscreen" allow="fullscreen">  </iframe></div><a href="https:&#x2F;&#x2F;www.canva.com&#x2F;design&#x2F;DAHWK-PMOuE&#x2F;QexB2WRUFqT7mDDA0XcFTQ&#x2F;view?utm_content=DAHWK-PMOuE&amp;utm_campaign=designshare&amp;utm_medium=embeds&amp;utm_source=link" target="_blank" rel="noopener">At Present Template</a> by Nicole Bergen
+
+
+
+https://www.canva.com/design/DAHWK-PMOuE/QexB2WRUFqT7mDDA0XcFTQ/view
+
+Ok. then can you set some code snippets up with these fields for threw new post-like objects:
+
+AUTHOR 
+Automatic WordPress ID 
+Name 
+Country → WordPress taxonomy (multiselect)
+Gender → Male/Female/Other
+BIPOC → Checkbox
+LGBTQ+ → Checkbox
+Disabled/Neurodivergent → Checkbox
+About 
+Photo as featured image 
+
+BOOK 
+Automatic WordPress ID 
+Title 
+Author → linked Author 
+Pages → number
+Status  → dropdown Read, Currently Reading, To Read, DNF
+Fiction/Nonfiction → dropdown
+Genre → Tags/WordPress taxonomy (multiselect)
+Original Language → WordPress taxonomy (usually single but not always)
+Cover image as featured image 
+About 
+Publication Year
+
+READ INSTANCE 
+Automatic WordPress ID
+Book → linked  
+Date Read 
+Rating → Dropdown 1 1.5 2 2.5 3 3.5 4 4.5 5
+Format  → dropdown Print, eBook, Audiobook
+Language Read → WordPress taxonomy (usually single but not always)
+Review
+
+TRANSLATOR - create later and add to read instance
+ID 
+Name 
+
+Linocut: A Creative Guide to Making Beautiful Prints
+Sam Marshall
+
+[project_breadcrumbs] is the trail back up the tree.
+[project_children] is the list of child entries.
+[project_related] is the two-way related links.
+[project_links] is the external links.
+[project_videos] is the embedded YouTube and Vimeo videos.
+[project_same_tags] is the projects that share a tag.
+
+
+More than one book with this title, left alone: A Walk Through the Forest of Souls: A Tarot Journey to Spiritual Awakening (244.jpg)
+More than one book with this title, left alone: A Walk through the Forest of Souls: A Tarot Journey to Spiritual Awakening (613.jpg)
+More than one book with this title, left alone: Jane Eyre (199.jpg)
+More than one book with this title, left alone: Jane Eyre (578.jpg)
+More than one book with this title, left alone: Le Retour du roi (Le Seigneur des Anneaux, #3) (16.jpg)
+More than one book with this title, left alone: Harry Potter et le Prince de Sang-Mêlé (Harry Potter, #6) (648.jpg)
+More than one book with this title, left alone: Harry Potter et L'Ordre du Phenix (Harry Potter, #5) (643.jpg)
+More than one book with this title, left alone: As Long as Grass Grows: The Indigenous Fight for Environmental Justice, from Colonization to Standing Rock (591.jpg)
+More than one book with this title, left alone: As Long as Grass Grows: The Indigenous Fight for Environmental Justice, from Colonization to Standing Rock (665.jpg)
+More than one book with this title, left alone: Botanical Curses and Poisons: The Shadow-Lives of Plants (560.jpg)
+More than one book with this title, left alone: Botanical Curses and Poisons: The Shadow-Lives of Plants (612.jpg)
+More than one book with this title, left alone: Plant Witchery: Discover the Sacred Language, Wisdom, and Magic of 200 Plants (589.jpg)
+More than one book with this title, left alone: Plant Witchery: Discover the Sacred Language, Wisdom, and Magic of 200 Plants (702.jpg)
+More than one book with this title, left alone: Harry Potter and the Half-Blood Prince (Harry Potter #6) (1092.jpg)
+More than one book with this title, left alone: Harry Potter and the Order of the Phoenix (Harry Potter #5) (1080.jpg)
+More than one book with this title, left alone: Harry Potter and the Goblet of Fire (Harry Potter #4) (1054.jpg)
+
+More than one book with this title, left alone: Of Blood and Bones: Working with Shadow Magick & the Dark Moon (615.jpg)
+More than one book with this title, left alone: Of Blood and Bones: Working with Shadow Magick & the Dark Moon (734.jpg)
+More than one book with this title, left alone: La dame aux camélias (1704.jpg)
+
+More than one book with this title, left alone: The Children of Húrin (2941.jpg)
+More than one book with this title, left alone: Moi, Malala, je lutte pour l'éducation et je résiste aux talibans (219.jpg)
+More than one book with this title, left alone: Moi, Malala, je lutte pour l'éducation et je résiste aux talibans (1542.jpg)
+More than one book with this title, left alone: Harry Potter et le Prince de Sang-Mêlé (Harry Potter, #6) (1513.jpg)
+More than one book with this title, left alone: Harry Potter et L'Ordre du Phenix (Harry Potter, #5) (1510.jpg)
+More than one book with this title, left alone: Scottish Witchcraft: A Complete Guide to Authentic Folklore, Spells, and Magickal Tools (592.jpg)
+More than one book with this title, left alone: Scottish Witchcraft: A Complete Guide to Authentic Folklore, Spells, and Magickal Tools (731.jpg)
+More than one book with this title, left alone: Finding the Mother Tree: Discovering the Wisdom of the Forest (586.jpg)
+More than one book with this title, left alone: Finding the Mother Tree: Discovering the Wisdom of the Forest (843.jpg)
+More than one book with this title, left alone: La dame aux camélias (1503.jpg)
+More than one book with this title, left alone: The Ode Less Travelled: Unlocking the Poet Within (399.jpg)
+More than one book with this title, left alone: The Ode Less Travelled: Unlocking the Poet Within (576.jpg)
+More than one book with this title, left alone: The Children of Húrin (1539.jpg)
+More than one book with this title, left alone: Harry Potter and the Philosopher's Stone (Harry Potter #1) (1038.jpg)
+More than one book with this title, left alone: Harry Potter and the Chamber of Secrets (Harry Potter #2) (1043.jpg)
+More than one book with this title, left alone: Harry Potter and the Deathly Hallows (Harry Potter #7) (1101.jpg)
+More than one book with this title, left alone: Harry Potter and the Philosopher's Stone (Harry Potter #1) (1319.jpg)
+More than one book with this title, left alone: Harry Potter and the Chamber of Secrets (Harry Potter #2) (1320.jpg)
+More than one book with this title, left alone: Harry Potter and the Goblet of Fire (Harry Potter #4) (1327.jpg)
+More than one book with this title, left alone: Harry Potter and the Order of the Phoenix (Harry Potter #5) (1341.jpg)
+More than one book with this title, left alone: Harry Potter and the Half-Blood Prince (Harry Potter #6) (1356.jpg)
+More than one book with this title, left alone: Harry Potter and the Deathly Hallows (Harry Potter #7) (1357.jpg)
+
+
